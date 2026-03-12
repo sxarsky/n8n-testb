@@ -21,18 +21,19 @@ jobs:
           fetch-depth: 0
 
       - name: Run Skyramp Testbot
-        uses: skyramp/testbot@v0.2.0
+        uses: skyramp/testbot@shiny/test-recom-update
         with:
           skyramp_license_file: ${{ secrets.SKYRAMP_LICENSE }}
           anthropic_api_key: ${{ secrets.SKYRAMP_TESTBOT_API_KEY }}
+          skyramp_mcp_version: next
 
-          service_startup_command: './deployment-testbot/setup.sh'
-          health_check_command: 'curl -f http://localhost:5678/healthz'
+          service_startup_command: "./deployment-testbot/setup.sh"
+          health_check_command: "curl -f http://localhost:5678/healthz"
           health_check_timeout: 60
-          auth_token_command: './deployment-testbot/get-token.sh'
+          auth_token_command: "./deployment-testbot/get-token.sh"
 
-          test_directory: 'test'
+          test_directory: "test"
           auto_commit: true
           post_pr_comment: true
           enable_debug: true
-          commit_message: 'TestBot: update tests for n8n'
+          commit_message: "TestBot: update tests for n8n"
